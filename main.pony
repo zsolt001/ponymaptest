@@ -10,10 +10,11 @@ class MyMapKey is (Hashable & Equatable[MyMapKey])
     eventName = e
 
   fun hash():USize =>
-    stateName.hash()
+    let k = stateName + eventName
+    k.hash()
 
   fun eq(that: box->MyMapKey):Bool =>
-    stateName == that.stateName
+    (stateName == that.stateName) and (eventName == that.eventName)
 
 
 actor Main
